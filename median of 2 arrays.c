@@ -1,11 +1,15 @@
 #include <stdio.h>
-#include <stdlib.h>
 
-int compare(const void *a, const void *b) {
-    double diff = *(double *)a - *(double *)b;
-    if (diff > 0) return 1;
-    else if (diff < 0) return -1;
-    else return 0;
+void bubbleSort(double arr[], int size) {
+    for (int i = 0; i < size - 1; i++) {
+        for (int j = 0; j < size - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                double temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
 }
 
 int main(){
@@ -15,11 +19,9 @@ int main(){
     int arr[n], arr2[x];
     printf("Enter the elements of the 1st array: ");
     for(i=0;i<n;i++){
-        printf("\nElement %d: ",i+1);
         scanf("%d",&arr[i]);}
     printf("Enter the elements of the 2nd array: ");
     for(i=0;i<x;i++){
-        printf("\nElement %d: ",i+1);
         scanf("%d",&arr2[i]);}
     double merged[n+x];
     int k=0;
@@ -29,7 +31,7 @@ int main(){
     for(i=0;i<x;i++){
         merged[k++]=arr2[i];
     }
-    qsort(merged, n+x, sizeof(double), compare);
+    bubbleSort(merged, n+x);
     printf("The merged array is: ");
     for(i=0;i<n+x;i++){
         printf("%lf ",merged[i]);
